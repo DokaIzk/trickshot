@@ -76,11 +76,7 @@ interface ITournamentEscrow {
     function lockTournament(uint256 id) external;
     function cancelTournament(uint256 id, string calldata reason) external;
 
-    function settleTournament(
-        uint256 id,
-        address[] calldata winners,
-        uint16[] calldata winnerPayoutBps
-    ) external;
+    function settleTournament(uint256 id, address[] calldata winners, uint16[] calldata winnerPayoutBps) external;
 
     function withdraw(uint256 id) external;
     function withdrawTreasury(uint256 id) external;

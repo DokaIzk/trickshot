@@ -87,17 +87,7 @@ contract TournamentEscrow is ITournamentEscrow, UpgradeableGoverned {
             payoutCurves[id].push(payoutCurveBps[i]);
         }
 
-        emit TournamentCreated(
-            id,
-            entryToken,
-            entryFee,
-            start,
-            end,
-            t.rakeBps,
-            minPlayers,
-            maxPlayers,
-            payoutCurveHash
-        );
+        emit TournamentCreated(id, entryToken, entryFee, start, end, t.rakeBps, minPlayers, maxPlayers, payoutCurveHash);
     }
 
     function enterTournament(uint256 id) external nonReentrant whenNotPaused {
@@ -158,11 +148,11 @@ contract TournamentEscrow is ITournamentEscrow, UpgradeableGoverned {
         emit TournamentCancelled(id, reason);
     }
 
-    function settleTournament(
-        uint256 id,
-        address[] calldata winners,
-        uint16[] calldata winnerPayoutBps
-    ) external onlyOwner whenNotPaused {
+    function settleTournament(uint256 id, address[] calldata winners, uint16[] calldata winnerPayoutBps)
+        external
+        onlyOwner
+        whenNotPaused
+    {
         Tournament storage t = tournaments[id];
         if (t.status != TournamentStatus.Locked) {
             revert InvalidStatus();

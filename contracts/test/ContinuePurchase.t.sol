@@ -12,9 +12,7 @@ contract ContinueBuyer {
     }
 
     function buy(address store, bytes32 runIdHint, uint8 mode) external {
-        (bool ok,) = store.call(
-            abi.encodeWithSignature("buyContinue(bytes32,uint8)", runIdHint, mode)
-        );
+        (bool ok,) = store.call(abi.encodeWithSignature("buyContinue(bytes32,uint8)", runIdHint, mode));
         require(ok, "buy failed");
     }
 }
@@ -41,14 +39,15 @@ contract ContinuePurchaseTest {
         token.mint(address(buyer), 3 ether);
         buyer.approveToken(address(token), address(store), 3 ether);
 
-        (bool ok,) = address(buyer).call(
-            abi.encodeWithSignature(
-                "buy(address,bytes32,uint8)",
-                address(store),
-                bytes32("run-2"),
-                uint8(ContinuePurchase.RunMode.Tournament)
-            )
-        );
+        (bool ok,) = address(buyer)
+            .call(
+                abi.encodeWithSignature(
+                    "buy(address,bytes32,uint8)",
+                    address(store),
+                    bytes32("run-2"),
+                    uint8(ContinuePurchase.RunMode.Tournament)
+                )
+            );
         assert(!ok);
     }
 
@@ -57,13 +56,12 @@ contract ContinuePurchaseTest {
         ContinuePurchase store = _deployProxyStore(token);
         store.pause();
 
-        (bool ok,) = address(store).call(
-            abi.encodeWithSignature(
-                "buyContinue(bytes32,uint8)",
-                bytes32("run-3"),
-                uint8(ContinuePurchase.RunMode.Casual)
-            )
-        );
+        (bool ok,) = address(store)
+            .call(
+                abi.encodeWithSignature(
+                    "buyContinue(bytes32,uint8)", bytes32("run-3"), uint8(ContinuePurchase.RunMode.Casual)
+                )
+            );
         assert(!ok);
     }
 

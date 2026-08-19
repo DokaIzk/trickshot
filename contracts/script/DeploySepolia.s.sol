@@ -29,8 +29,7 @@ contract DeploySepolia is Script {
         ContinuePurchase continuePurchaseImpl = new ContinuePurchase();
 
         ERC1967Proxy escrowProxy = new ERC1967Proxy(
-            address(escrowImpl),
-            abi.encodeCall(TournamentEscrow.initialize, (config.owner, config.treasury))
+            address(escrowImpl), abi.encodeCall(TournamentEscrow.initialize, (config.owner, config.treasury))
         );
         ERC1967Proxy powerupShopProxy = new ERC1967Proxy(
             address(powerupShopImpl),
@@ -39,8 +38,7 @@ contract DeploySepolia is Script {
         ERC1967Proxy continuePurchaseProxy = new ERC1967Proxy(
             address(continuePurchaseImpl),
             abi.encodeCall(
-                ContinuePurchase.initialize,
-                (config.owner, config.paymentToken, config.treasury, config.continuePrice)
+                ContinuePurchase.initialize, (config.owner, config.paymentToken, config.treasury, config.continuePrice)
             )
         );
 

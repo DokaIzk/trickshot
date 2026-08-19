@@ -25,11 +25,7 @@ contract ContinuePurchase is UpgradeableGoverned {
     error TournamentContinuesDisabled();
 
     event ContinuePurchased(
-        address indexed buyer,
-        bytes32 indexed runIdHint,
-        uint256 price,
-        address paymentToken,
-        uint64 ts
+        address indexed buyer, bytes32 indexed runIdHint, uint256 price, address paymentToken, uint64 ts
     );
     event ContinuePriceUpdated(uint256 oldPrice, uint256 newPrice);
     event TreasuryUpdated(address indexed oldTreasury, address indexed newTreasury);
@@ -79,12 +75,6 @@ contract ContinuePurchase is UpgradeableGoverned {
 
         paymentToken.safeTransferFrom(msg.sender, treasury, continuePrice);
 
-        emit ContinuePurchased(
-            msg.sender,
-            runIdHint,
-            continuePrice,
-            address(paymentToken),
-            uint64(block.timestamp)
-        );
+        emit ContinuePurchased(msg.sender, runIdHint, continuePrice, address(paymentToken), uint64(block.timestamp));
     }
 }

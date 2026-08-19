@@ -64,8 +64,7 @@ contract PowerupShopTest {
     function _deployProxyShop(MockERC20 token) internal returns (PowerupShop) {
         PowerupShop impl = new PowerupShop();
         ERC1967Proxy proxy = new ERC1967Proxy(
-            address(impl),
-            abi.encodeCall(PowerupShop.initialize, (address(this), address(token), address(this)))
+            address(impl), abi.encodeCall(PowerupShop.initialize, (address(this), address(token), address(this)))
         );
         return PowerupShop(address(proxy));
     }

@@ -59,8 +59,7 @@ contract TournamentEscrowTest {
     function test_ownerCanAuthorizeUpgradePath() public {
         TournamentEscrowHarness impl = new TournamentEscrowHarness();
         ERC1967Proxy proxy = new ERC1967Proxy(
-            address(impl),
-            abi.encodeCall(TournamentEscrow.initialize, (address(this), address(this)))
+            address(impl), abi.encodeCall(TournamentEscrow.initialize, (address(this), address(this)))
         );
 
         TournamentEscrowHarness proxied = TournamentEscrowHarness(address(proxy));
@@ -70,8 +69,7 @@ contract TournamentEscrowTest {
     function _deployProxyEscrow() internal returns (TournamentEscrow) {
         TournamentEscrow impl = new TournamentEscrow();
         ERC1967Proxy proxy = new ERC1967Proxy(
-            address(impl),
-            abi.encodeCall(TournamentEscrow.initialize, (address(this), address(this)))
+            address(impl), abi.encodeCall(TournamentEscrow.initialize, (address(this), address(this)))
         );
         return TournamentEscrow(address(proxy));
     }

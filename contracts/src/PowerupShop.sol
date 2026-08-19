@@ -87,13 +87,7 @@ contract PowerupShop is UpgradeableGoverned {
         paymentToken.safeTransferFrom(msg.sender, treasury, totalPrice);
 
         emit PowerupPurchased(
-            msg.sender,
-            skuId,
-            amount,
-            sku.unitPrice,
-            totalPrice,
-            address(paymentToken),
-            uint64(block.timestamp)
+            msg.sender, skuId, amount, sku.unitPrice, totalPrice, address(paymentToken), uint64(block.timestamp)
         );
     }
 }
