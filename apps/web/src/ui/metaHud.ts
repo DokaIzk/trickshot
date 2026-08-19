@@ -282,6 +282,7 @@ export class MetaHud {
     this.modeEl.hidden = true;
     this.root.classList.remove("is-landing");
     this.modeLabelEl.hidden = false;
+    this.accountPanel.hidden = true;
   }
 
   showPause(): void {
