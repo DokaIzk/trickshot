@@ -12,7 +12,7 @@ export default defineConfig({
       includeAssets: ["favicon.svg", "pwa-192.png", "pwa-512.png"],
       workbox: {
         // Precache hashed Vite bundles + shell; serve index.html for SPA navigations.
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest}"],
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest,mp3}"],
         navigateFallback: "index.html",
         cleanupOutdatedCaches: true,
         navigateFallbackDenylist: [/^\/api\//],

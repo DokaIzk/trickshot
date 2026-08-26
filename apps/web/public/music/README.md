@@ -1,4 +1,5 @@
-# Optional licensed stems
+# Music
 
-Place `bed.mp3` / `bed.wav` and `intensity.mp3` / `intensity.wav` here.
-When missing, the client uses a procedural bounce groove (kick + bass + pad + intensity arp).
+`bed.mp3` is the Trick Shot theme. The client loops it as the music bed.
+Optional `intensity.mp3` / `intensity.wav` ducks in on hot streaks.
+When `bed.mp3` is missing, the client uses a procedural bounce groove.
