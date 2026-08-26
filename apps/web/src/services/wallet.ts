@@ -7,7 +7,7 @@ import {
   http,
   type Address,
 } from "viem";
-import { getMagicRpcProvider, getSession } from "./auth.js";
+import { getMagicRpcProvider, getSession, logout } from "./auth.js";
 import {
   CELO_MAINNET_CHAIN_ID,
   CELO_MAINNET_RPC_URL,
@@ -109,7 +109,7 @@ export async function getWalletAddress(): Promise<Address> {
 }
 
 export async function getConnectedChainId(): Promise<number> {
-  return Number(await getWalletClient().getChainId());
+  return Number(await getPublicClient().getChainId());
 }
 
 export function assertCeloChainId(
@@ -128,12 +128,41 @@ export function assertCeloSepoliaChainId(chainId: number | bigint): void {
   }
 }
 
+/**
+ * Confirm the configured public Celo JSON-RPC node matches the locked chain.
+ *
+ * Do not ask Magic's iframe provider for `eth_chainId`: viem wraps that
+ * failure as `Magic RPC Error: [-32603] Failed to fetch`, which previously
+ * aborted email login even after OTP succeeded.
+ */
 export async function ensureCeloNetwork(): Promise<void> {
   assertCeloChainId(await getConnectedChainId());
 }
 
 export async function ensureCeloSepolia(): Promise<void> {
   assertCeloSepoliaChainId(await getConnectedChainId());
+}
+
+export async function finalizeLoginSession<T>(
+  session: T,
+  deps: {
+    ensureNetwork?: () => Promise<void>;
+    signOut?: () => Promise<void>;
+  } = {},
+): Promise<T> {
+  const ensureNetwork = deps.ensureNetwork ?? ensureCeloNetwork;
+  const signOut = deps.signOut ?? logout;
+  try {
+    await ensureNetwork();
+    return session;
+  } catch (error) {
+    if (error instanceof WrongNetworkError) {
+      await signOut();
+      throw error;
+    }
+    console.warn("[wallet] Celo RPC check failed after login", error);
+    return session;
+  }
 }
 
 export async function getNativeBalance(address?: Address): Promise<bigint> {
