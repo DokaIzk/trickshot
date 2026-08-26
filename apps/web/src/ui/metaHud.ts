@@ -69,17 +69,66 @@ export class MetaHud {
         <button type="button" class="meta-chip meta-mute" id="meta-mute-btn" aria-label="Toggle mute">🔊</button>
       </div>
       <div class="meta-landing" id="meta-mode" hidden>
+        <div class="meta-landing-court" aria-hidden="true">
+          <div class="meta-court-lane"></div>
+          <div class="meta-court-arc"></div>
+        </div>
         <div class="meta-landing-glow" aria-hidden="true"></div>
-        <div class="meta-landing-brand">
-          <h1 class="meta-brand">TRICK <span>SHOT</span></h1>
-          <p class="meta-tagline">Drag. Dunk. Chain.</p>
+        <div class="meta-landing-hero">
+          <div class="meta-hero-hoop" aria-hidden="true">
+            <svg viewBox="0 0 180 210" fill="none">
+              <rect x="42" y="10" width="96" height="68" rx="7" fill="#f7f8fa" stroke="#1a1c22" stroke-width="3.5"/>
+              <rect x="62" y="24" width="56" height="40" rx="3" stroke="#ff4d1a" stroke-width="3.5"/>
+              <rect x="86" y="78" width="8" height="16" fill="#5f646e"/>
+              <ellipse cx="90" cy="100" rx="36" ry="11" fill="rgba(26,28,34,0.08)"/>
+              <ellipse cx="90" cy="98" rx="34" ry="10" stroke="#ff4d1a" stroke-width="7"/>
+              <path d="M62 100 C64 132 74 150 90 154 C106 150 116 132 118 100" stroke="#9aa0aa" stroke-width="2" opacity=".9"/>
+              <path d="M72 99 C74 128 80 144 90 148 C100 144 106 128 108 99" stroke="#9aa0aa" stroke-width="2" opacity=".75"/>
+              <path d="M82 98 C83 124 86 138 90 142 C94 138 97 124 98 98" stroke="#9aa0aa" stroke-width="2" opacity=".6"/>
+              <g class="meta-hero-ball">
+                <circle cx="90" cy="124" r="17" fill="#1e5fff"/>
+                <ellipse cx="84" cy="118" rx="6" ry="4" fill="rgba(255,255,255,0.45)"/>
+                <path d="M78 124c6 8 18 8 24 0" stroke="rgba(10,20,60,0.25)" stroke-width="1.6" fill="none"/>
+              </g>
+            </svg>
+          </div>
+          <div class="meta-landing-brand">
+            <p class="meta-kicker">Chain hoop arcade</p>
+            <h1 class="meta-brand">
+              <span class="meta-brand-trick">TRICK</span>
+              <span class="meta-brand-shot">SHOT</span>
+            </h1>
+            <p class="meta-tagline">
+              <span>Drag</span>
+              <span>Dunk</span>
+              <span>Chain</span>
+            </p>
+          </div>
         </div>
         <div class="meta-landing-actions">
-          <button type="button" class="meta-play" data-mode="casual">Play</button>
+          <button type="button" class="meta-play" data-mode="casual">
+            <span class="meta-play-ball" aria-hidden="true"></span>
+            Play
+          </button>
           <div class="meta-modes" role="group" aria-label="Game modes">
-            <button type="button" data-mode="daily">Daily</button>
-            <button type="button" data-mode="challenges">Challenges</button>
-            <button type="button" data-mode="tournament">Tournament</button>
+            <button type="button" data-mode="daily" aria-label="Daily">
+              <span class="meta-mode-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="M8 4v4M16 4v4M4 11h16" stroke="currentColor" stroke-width="2"/></svg>
+              </span>
+              <span class="meta-mode-copy"><strong>Daily</strong><em>Today’s seed</em></span>
+            </button>
+            <button type="button" data-mode="challenges" aria-label="Challenges">
+              <span class="meta-mode-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              <span class="meta-mode-copy"><strong>Challenges</strong><em>30 shots</em></span>
+            </button>
+            <button type="button" data-mode="tournament" aria-label="Tournament">
+              <span class="meta-mode-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M7 5h10v3a5 5 0 0 1-10 0V5Z" stroke="currentColor" stroke-width="2"/><path d="M9 16h6M12 13v3M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              <span class="meta-mode-copy"><strong>Tournament</strong><em>No continues</em></span>
+            </button>
           </div>
           <button type="button" class="meta-skins-toggle" id="meta-skins-toggle" aria-expanded="false">
             Skins
