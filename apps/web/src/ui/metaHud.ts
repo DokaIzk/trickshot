@@ -70,8 +70,12 @@ export class MetaHud {
       </div>
       <div class="meta-landing" id="meta-mode" hidden>
         <div class="meta-landing-court" aria-hidden="true">
+          <div class="meta-court-floor"></div>
           <div class="meta-court-lane"></div>
           <div class="meta-court-arc"></div>
+          <div class="meta-court-circle"></div>
+          <div class="meta-court-grain"></div>
+          <div class="meta-court-vignette"></div>
         </div>
         <div class="meta-landing-glow" aria-hidden="true"></div>
         <div class="meta-landing-hero">
